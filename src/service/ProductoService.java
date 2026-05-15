@@ -37,5 +37,16 @@ public class ProductoService {
 
         return null;
     }
+    public boolean eliminarProducto(int id) {
+
+        Producto producto = buscarPorId(id);
+
+        if (producto != null) {
+            productos.remove(producto);
+            return true;
+        }
+
+        return false;
+    }
 
 }
