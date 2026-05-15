@@ -22,6 +22,9 @@ public class Main {
             System.out.println("1. Agregar libro");
             System.out.println("2. Listar libros");
             System.out.println("3. Buscar libro");
+            System.out.println("4. Eliminar libro");
+            System.out.println("5. Salir");
+            System.out.print("Seleccione una opción: ");
 
 
             opcion = scanner.nextInt();
@@ -82,7 +85,7 @@ public class Main {
 
                 case 4:
 
-                    System.out.println("Saliendo del sistema...");
+                    System.out.println("Saliendo del sistema.");
 
                     break;
 
