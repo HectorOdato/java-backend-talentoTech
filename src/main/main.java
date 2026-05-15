@@ -17,7 +17,6 @@ public class Main {
         int idContador = 1;
 
         do {
-
             System.out.println("\n===== LIBRERÍA =====");
             System.out.println("1. Agregar libro");
             System.out.println("2. Listar libros");
@@ -25,8 +24,6 @@ public class Main {
             System.out.println("4. Eliminar libro");
             System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");
-
-
             opcion = scanner.nextInt();
             scanner.nextLine();
 
@@ -82,8 +79,22 @@ public class Main {
                     }
 
                     break;
-
                 case 4:
+
+                    System.out.print("Ingrese ID del libro a eliminar: ");
+                    int idEliminar = scanner.nextInt();
+
+                    boolean eliminado = productoService.eliminarProducto(idEliminar);
+
+                    if (eliminado) {
+                        System.out.println("Libro eliminado.");
+                    } else {
+                        System.out.println("No se encontró el libro.");
+                    }
+
+                    break;
+
+                case 5:
 
                     System.out.println("Saliendo del sistema.");
 
@@ -94,7 +105,7 @@ public class Main {
                     System.out.println("Opción inválida.");
             }
 
-        } while (opcion != 4);
+        } while (opcion != 5);
 
         scanner.close();
     }
