@@ -15,5 +15,16 @@ public class ProductoService {
     public void agregarProducto(Producto producto) {
         productos.add(producto);
     }
+    public Producto buscarPorId(int id) {
 
+        for (Producto producto : productos) {
 
+            if (producto.getId() == id) {
+                return producto;
+            }
+        }
+
+        return null;
+    }
+
+}
