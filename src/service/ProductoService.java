@@ -15,6 +15,17 @@ public class ProductoService {
     public void agregarProducto(Producto producto) {
         productos.add(producto);
     }
+    public void listarProductos() {
+
+        if (productos.isEmpty()) {
+            System.out.println("No hay libros cargados.");
+            return;
+        }
+
+        for (Producto producto : productos) {
+            System.out.println(producto);
+        }
+    }
     public Producto buscarPorId(int id) {
 
         for (Producto producto : productos) {
