@@ -18,11 +18,12 @@ public class Main {
 
         do {
             System.out.println("\n===== LIBRERÍA =====");
-            System.out.println("1. Agregar libro");
-            System.out.println("2. Listar libros");
-            System.out.println("3. Buscar libro");
-            System.out.println("4. Eliminar libro");
-            System.out.println("5. Salir");
+            System.out.println("1-Agregar libro");
+            System.out.println("2-Listar libros");
+            System.out.println("3-Buscar libro");
+            System.out.println("4-Eliminar libro");
+            System.out.println("5-Actualizar libro");
+            System.out.println("6-Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             scanner.nextLine();
@@ -96,6 +97,38 @@ public class Main {
 
                 case 5:
 
+                    System.out.print("Ingrese ID del libro: ");
+                    int idActualizar = scanner.nextInt();
+
+                    Producto libroActualizar = productoService.buscarPorId(idActualizar);
+
+                    if (libroActualizar != null) {
+
+                    System.out.println("Libro encontrado:");
+                    System.out.println(libroActualizar);
+
+                    System.out.print("Nuevo precio: ");
+                    double nuevoPrecio = scanner.nextDouble();
+
+                    System.out.print("Nuevo stock: ");
+                    int nuevoStock = scanner.nextInt();
+
+                    boolean actualizado = productoService.actualizarProducto(
+                    idActualizar,
+                    nuevoPrecio,
+                    nuevoStock
+        );
+                    if (actualizado) {
+                        System.out.println("Libro actualizado correctamente.");
+        }
+                    } else {
+                        System.out.println("Libro no encontrado.");
+                        }   
+
+    break;
+
+                case 6:
+
                     System.out.println("Saliendo del sistema.");
 
                     break;
@@ -105,7 +138,7 @@ public class Main {
                     System.out.println("Opción inválida.");
             }
 
-        } while (opcion != 5);
+        } while (opcion != 6);
 
         scanner.close();
     }
