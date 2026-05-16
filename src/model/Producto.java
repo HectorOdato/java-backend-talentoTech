@@ -8,13 +8,15 @@ public class Producto {
     private double precio;
     private int stock;
 
-    public Producto(int id, String titulo, String autor, double precio, int stock) {
-        this.id = id;
-        this.titulo = titulo;
-        this.autor = autor;
-        this.precio = precio;
-        this.stock = stock;
-    }
+public Producto(int id, String titulo, String autor, double precio, int stock) {
+
+    this.id = id;
+
+    setTitulo(titulo);
+    setAutor(autor);
+    setPrecio(precio);
+    setStock(stock);
+}
 
     public int getId() {
         return id;
@@ -29,22 +31,34 @@ public class Producto {
     }
 
     public void setTitulo(String titulo) {
-        this.titulo = titulo;
+
+    if (titulo == null || titulo.trim().isEmpty()) {
+        throw new IllegalArgumentException("El título no puede estar vacío.");
     }
 
+    this.titulo = titulo;
+}
     public String getAutor() {
         return autor;
     }
 
     public void setAutor(String autor) {
-        this.autor = autor;
+
+    if (autor == null || autor.trim().isEmpty()) {
+        throw new IllegalArgumentException("El autor no puede estar vacío.");
     }
+
+    this.autor = autor;
+}
 
     public double getPrecio() {
         return precio;
     }
 
     public void setPrecio(double precio) {
+        if (precio < 0) {
+            throw new IllegalArgumentException("El precio no puede ser negativo.");
+        }
         this.precio = precio;
     }
 
@@ -53,6 +67,9 @@ public class Producto {
     }
 
     public void setStock(int stock) {
+        if (stock < 0) {
+            throw new IllegalArgumentException("El stock no puede ser negativo.");
+        }
         this.stock = stock;
     }
 

@@ -44,20 +44,15 @@ public class Main {
                     System.out.print("Stock: ");
                     int stock = scanner.nextInt();
 
-                    Producto producto = new Producto(
-                            idContador,
-                            titulo,
-                            autor,
-                            precio,
-                            stock
-                    );
+                    try {
+                        Producto Producto = new Producto(idContador, titulo, autor, precio, stock);
+                        productoService.agregarProducto(Producto);
+                        System.out.println("Libro agregado correctamente.");
 
-                    productoService.agregarProducto(producto);
-
-                    System.out.println("Libro agregado correctamente.");
-
-                    idContador++;
-
+                        idContador++;
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error al agregar libro: " + e.getMessage());
+                    }
                     break;
 
                 case 2:
@@ -124,17 +119,12 @@ public class Main {
                     } else {
                         System.out.println("Libro no encontrado.");
                         }   
-
-    break;
+            break;
 
                 case 6:
-
                     System.out.println("Saliendo del sistema.");
-
                     break;
-
                 default:
-
                     System.out.println("Opción inválida.");
             }
 
