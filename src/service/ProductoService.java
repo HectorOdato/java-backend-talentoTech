@@ -45,8 +45,21 @@ public class ProductoService {
             productos.remove(producto);
             return true;
         }
-
         return false;
     }
+
+    public boolean actualizarProducto(int id, double nuevoPrecio, int nuevoStock) {
+
+    Producto producto = buscarPorId(id);
+
+    if (producto != null) {
+
+        producto.setPrecio(nuevoPrecio);
+        producto.setStock(nuevoStock);
+
+        return true;
+    }
+    return false;
+}
 
 }
