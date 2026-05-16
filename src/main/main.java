@@ -1,5 +1,7 @@
 package main;
-
+import model.Pedido;
+import service.PedidoService;
+import exception.StockInsuficienteException;
 import model.Producto;
 import service.ProductoService;
 
@@ -12,6 +14,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         ProductoService productoService = new ProductoService();
+        PedidoService pedidoService = new PedidoService();
 
         int opcion;
         int idContador = 1;
@@ -23,7 +26,8 @@ public class Main {
             System.out.println("3-Buscar libro");
             System.out.println("4-Eliminar libro");
             System.out.println("5-Actualizar libro");
-            System.out.println("6-Salir");
+            System.out.println("6-Crear pedido");
+            System.out.println("7-Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             scanner.nextLine();
@@ -120,15 +124,45 @@ public class Main {
                         System.out.println("Libro no encontrado.");
                         }   
             break;
+            case 6:
+                try {
+                    System.out.print("Ingrese ID del libro: ");
+                    int idPedido = scanner.nextInt();
 
-                case 6:
+                    Producto libroPedido =
+                    productoService.buscarPorId(idPedido);
+
+                    if (libroPedido == null) {
+
+                    System.out.println("Libro no encontrado.");
+                    break;
+        }
+
+                System.out.print("Cantidad: ");
+                int cantidad = scanner.nextInt();
+
+                Pedido pedido =
+                    pedidoService.crearPedido(
+                            libroPedido,
+                            cantidad
+                    );
+
+                System.out.println(pedido);
+            } catch (StockInsuficienteException e) {
+                System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+    }
+
+    break;
+                case 7:
                     System.out.println("Saliendo del sistema.");
                     break;
                 default:
                     System.out.println("Opción inválida.");
             }
 
-        } while (opcion != 6);
+        } while (opcion != 7);
 
         scanner.close();
     }
